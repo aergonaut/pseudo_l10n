@@ -1,8 +1,6 @@
-# PseudoL10n
+# `PseudoL10n`
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pseudo_l10n`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`PseudoL10n` is a simple gem to add pseudolocalization to Ruby projects.
 
 ## Installation
 
@@ -22,7 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Integration with `I18n`
+
+This gem provides a `PseudoL10n::Backend` class that is compatible with the `i18n` gem to provide automatic pseudolocalization to your project.
+
+To use the backend, wrap your existing `I18n.backend` with the `Backend` class from this gem:
+
+```ruby
+I18n.backend = PseudoL10n::Backend.new(I18n.backend)
+```
+
+### Low-level Transformer API
+
+This gem also provides a low-level transformer API. This can be used to transform a string according to pseudolocale rules.
+
+```ruby
+message = "Hello world"
+
+PseudoL10n::Transformer.call(message)
+# => "√Hello world√"
+```
 
 ## Development
 

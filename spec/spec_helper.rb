@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "i18n"
 require "pseudo_l10n"
 
 RSpec.configure do |config|
@@ -12,3 +13,8 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+# Configure I18n to read from spec/config/locales and to use the backend
+I18n.load_path += Dir[File.expand_path("../config/locales", __FILE__) + "/*.yml"]
+I18n.default_locale = :en
+I18n.backend = PseudoL10n::Backend.new(I18n.backend)
