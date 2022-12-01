@@ -19,8 +19,18 @@ module PseudoL10n
     end
 
     def translate(locale, key, options)
-      original = original_backend.translate(locale, key, options)
-      ::PseudoL10n::Transformer.call(original)
+      if locale.to_sym == PseudoL10n.pseudo_locale
+        locale = PseudoL10n.source_locale
+        original = original_backend.translate(locale, key, options)
+        ::PseudoL10n::Transformer.call(original)
+      else
+        original_backend.translate(locale, key, options)
+      end
+    end
+
+    def available_locales
+      available = original_backend.available_locales
+      available << PseudoL10n.pseudo_locale
     end
   end
 end
