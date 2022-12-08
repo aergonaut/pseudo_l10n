@@ -32,5 +32,11 @@ module PseudoL10n
       available = original_backend.available_locales
       available << PseudoL10n.pseudo_locale
     end
+
+    protected
+
+    def init_translations
+      original_backend.send(:init_translations)
+    end
   end
 end
