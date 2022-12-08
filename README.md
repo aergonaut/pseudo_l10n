@@ -30,6 +30,20 @@ To use the backend, wrap your existing `I18n.backend` with the `Backend` class f
 I18n.backend = PseudoL10n::Backend.new(I18n.backend)
 ```
 
+### Pseudo-Locale
+
+To activate pseudolocalization, set the current `I18n.locale` to the special pseudo-locale code `:en-ZZ`. This should not be any locale code that you app actually uses. If you need to change the default, you can change it in configuration:
+
+```ruby
+PseudoL10n.pseudo_locale = :"en-ZZ"
+```
+
+The pseudo-locale will apply various transformations to strings from the source locale. The source locale is by default `:en`. This can also be changed in configuration:
+
+```ruby
+PseudoL10n.source_locale = :en
+```
+
 ### Low-level Transformer API
 
 This gem also provides a low-level transformer API. This can be used to transform a string according to pseudolocale rules.
