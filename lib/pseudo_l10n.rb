@@ -18,4 +18,5 @@ module PseudoL10n
   end
 end
 
+require "pseudo_l10n/transformer"
 require "pseudo_l10n/backend"

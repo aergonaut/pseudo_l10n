@@ -1,5 +1,3 @@
-require "pseudo_l10n/transformer"
-
 module PseudoL10n
   RSpec.describe Transformer do
     describe ".call" do
