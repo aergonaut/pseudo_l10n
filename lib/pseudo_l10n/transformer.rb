@@ -21,10 +21,18 @@ module PseudoL10n
       )
 
     def call(original)
-      result = original
-      result = lengthen_string(result)
-      result = mark_string(result)
-      result
+      if original.is_a?(Hash)
+        original.transform_values { |value| call(value) }
+      elsif original.is_a?(Array)
+        original.map { |value| call(value) }
+      elsif original.is_a?(String)
+        result = original
+        result = lengthen_string(result)
+        result = mark_string(result)
+        result
+      else
+        original
+      end
     end
   
     def mark_string(string)
