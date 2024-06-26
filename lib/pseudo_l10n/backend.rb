@@ -6,9 +6,9 @@ module PseudoL10n
       @original_backend = original_backend
     end
 
-    def method_missing(name, *args, &block)
+    def method_missing(name, *, &)
       if respond_to_missing?(name)
-        original_backend.public_send(name, *args, &block)
+        original_backend.public_send(name, *, &)
       else
         super
       end

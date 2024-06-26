@@ -14,9 +14,9 @@ module PseudoL10n
             "<.*?>",
             "{{.*?}}",
             "%{.*?}",
-            "https?:\/\/\\S+",
+            "https?://\\S+",
             "&\\S*?;"
-          ].join('|')
+          ].join("|")
         })"
       )
 
@@ -28,19 +28,19 @@ module PseudoL10n
       elsif original.is_a?(String)
         result = original
         result = lengthen_string(result)
-        result = mark_string(result)
-        result
+        mark_string(result)
+
       else
         original
       end
     end
-  
+
     def mark_string(string)
       format(TEMPLATE, marker: MARKER, msg: string)
     end
 
     def lengthen_string(string)
-      parts = 
+      parts =
         string.split(ESCAPE_PATTERN).map do |part|
           if part.match?(ESCAPE_PATTERN)
             part
@@ -53,7 +53,7 @@ module PseudoL10n
     end
 
     def half_to_full_width(string)
-      string.tr('0-9a-zA-Z', '０-９ａ-ｚＡ-Ｚ')
+      string.tr("0-9a-zA-Z", "０-９ａ-ｚＡ-Ｚ")
     end
   end
 end

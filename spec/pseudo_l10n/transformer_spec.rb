@@ -25,7 +25,7 @@ module PseudoL10n
       end
 
       context "when given a Hash" do
-        let(:original) { { foo: :bar, x: "hello world" } }
+        let(:original) { {foo: :bar, x: "hello world"} }
 
         subject { Transformer.call(original) }
 
