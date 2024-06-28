@@ -10,13 +10,7 @@ module PseudoL10n
     ESCAPE_PATTERN =
       Regexp.new(
         "(#{
-          [
-            "<.*?>",
-            "{{.*?}}",
-            "%{.*?}",
-            "https?://\\S+",
-            "&\\S*?;"
-          ].join("|")
+          ["<.*?>", "{{.*?}}", "%{.*?}", "https?://\\S+", "&\\S*?;"].join("|")
         })"
       )
 
@@ -29,7 +23,6 @@ module PseudoL10n
         result = original
         result = lengthen_string(result)
         mark_string(result)
-
       else
         original
       end
@@ -41,13 +34,11 @@ module PseudoL10n
 
     def lengthen_string(string)
       parts =
-        string.split(ESCAPE_PATTERN).map do |part|
-          if part.match?(ESCAPE_PATTERN)
-            part
-          else
-            half_to_full_width(part)
+        string
+          .split(ESCAPE_PATTERN)
+          .map do |part|
+            part.match?(ESCAPE_PATTERN) ? part : half_to_full_width(part)
           end
-        end
 
       parts.join
     end

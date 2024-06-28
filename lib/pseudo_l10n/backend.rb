@@ -31,7 +31,9 @@ module PseudoL10n
     def translations
       original = original_backend.translations
       source_translations = original[PseudoL10n.source_locale] || {}
-      original[PseudoL10n.pseudo_locale] = ::PseudoL10n::Transformer.call(source_translations)
+      original[PseudoL10n.pseudo_locale] = ::PseudoL10n::Transformer.call(
+        source_translations
+      )
       original
     end
 

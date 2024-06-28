@@ -18,7 +18,8 @@ PseudoL10n.pseudo_locale = :"en-ZZ"
 PseudoL10n.source_locale = :en
 
 # Configure I18n to read from spec/config/locales and to use the backend
-I18n.load_path += Dir[File.expand_path("../config/locales", __FILE__) + "/**/*.yml"]
+I18n.load_path +=
+  Dir[File.expand_path("../config/locales", __FILE__) + "/**/*.yml"]
 I18n.default_locale = :en
 I18n.backend = PseudoL10n::Backend.new(I18n.backend)
 I18n.config.clear_available_locales_set

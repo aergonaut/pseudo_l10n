@@ -18,6 +18,7 @@ GEM
     parser (3.3.3.0)
       ast (~> 2.4.1)
       racc
+    prettier_print (1.2.1)
     racc (1.8.0)
     rainbow (3.1.1)
     rake (13.2.1)
@@ -67,6 +68,8 @@ GEM
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.21.0)
     strscan (3.1.0)
+    syntax_tree (6.2.0)
+      prettier_print (>= 1.2.0)
     unicode-display_width (2.5.0)
 
 PLATFORMS
@@ -81,6 +84,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop
   standard (~> 1.39)
+  syntax_tree
 
 BUNDLED WITH
    2.3.21

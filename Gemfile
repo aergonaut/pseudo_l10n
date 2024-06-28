@@ -8,4 +8,5 @@ gemspec
 group :development do
   gem "rubocop"
   gem "standard", "~> 1.39", require: false
+  gem "syntax_tree"
 end

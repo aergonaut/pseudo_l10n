@@ -21,11 +21,22 @@ module PseudoL10n
 
     describe "#translations" do
       it "includes the pseudolocale in the translations hash" do
-        expect(I18n.backend.send(:translations)).to have_key(PseudoL10n.pseudo_locale)
+        expect(I18n.backend.send(:translations)).to have_key(
+          PseudoL10n.pseudo_locale
+        )
       end
 
       it "pseudolocalizes all the messages" do
-        expect(I18n.backend.send(:translations)[PseudoL10n.pseudo_locale]).to eq({hello_name: "√Ｈｅｌｌｏ %{name}√", hello_world: "√Ｈｅｌｌｏ ｗｏｒｌｄ√", hello_world_html: "√Ｈｅｌｌｏ <a href=\"https://www.example.com\">ｗｏｒｌｄ</a>√"})
+        expect(
+          I18n.backend.send(:translations)[PseudoL10n.pseudo_locale]
+        ).to eq(
+          {
+            hello_name: "√Ｈｅｌｌｏ %{name}√",
+            hello_world: "√Ｈｅｌｌｏ ｗｏｒｌｄ√",
+            hello_world_html:
+              "√Ｈｅｌｌｏ <a href=\"https://www.example.com\">ｗｏｒｌｄ</a>√"
+          }
+        )
       end
     end
   end
