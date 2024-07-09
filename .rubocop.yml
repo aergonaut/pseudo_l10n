@@ -30,3 +30,6 @@ inherit_gem:
 # Global options, like Ruby version
 AllCops:
   SuggestExtensions: false
+
+Style/ArgumentsForwarding:
+  Enabled: false
