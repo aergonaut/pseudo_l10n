@@ -6,7 +6,7 @@ module PseudoL10n
   end
 
   def self.pseudo_locale
-    @pseudo_locale
+    @pseudo_locale || :"en-ZZ"
   end
 
   def self.source_locale=(locale)
@@ -14,7 +14,7 @@ module PseudoL10n
   end
 
   def self.source_locale
-    @source_locale
+    @source_locale || :en
   end
 end
 
