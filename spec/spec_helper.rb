@@ -14,8 +14,8 @@ RSpec.configure do |config|
   end
 end
 
-PseudoL10n.pseudo_locale = :"en-ZZ"
-PseudoL10n.source_locale = :en
+# PseudoL10n.pseudo_locale = :"en-ZZ"
+# PseudoL10n.source_locale = :en
 
 # Configure I18n to read from spec/config/locales and to use the backend
 I18n.load_path +=
