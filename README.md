@@ -32,16 +32,19 @@ I18n.backend = PseudoL10n::Backend.new(I18n.backend)
 
 ### Pseudo-Locale
 
-To activate pseudolocalization, set the current `I18n.locale` to the special pseudo-locale code `:en-ZZ`. This should not be any locale code that you app actually uses. If you need to change the default, you can change it in configuration:
+This gem generates a pseudo-locale at runtime by applying varius transformations to strings from the source locale. By
+default the source locale is `:en`. You may change the source locale by setting `PseudoL10n.source_locale` to a
+different value:
 
 ```ruby
-PseudoL10n.pseudo_locale = :"en-ZZ"
+PseudoL10n.source_locale = :de
 ```
 
-The pseudo-locale will apply various transformations to strings from the source locale. The source locale is by default `:en`. This can also be changed in configuration:
+To activate pseudolocalization, set the current `I18n.locale` to the special pseudolocale code. By default, this code is
+the `source_locale` code with `-ZZ` appended. For example, the pseudo-locale code for `:de` would be `de-ZZ`. You may change the pseudo-locale code by setting `PseudoL10n.pseudo_locale` to a different value:
 
 ```ruby
-PseudoL10n.source_locale = :en
+PseudoL10n.pseudo_locale = :qps
 ```
 
 ### Low-level Transformer API
