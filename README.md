@@ -55,7 +55,7 @@ This gem also provides a low-level transformer API. This can be used to transfor
 message = "Hello world"
 
 PseudoL10n::Transformer.call(message)
-# => "√Hello world√"
+# => "√Ｈｅｌｌｏ ｗｏｒｌｄ√"
 ```
 
 ## Development
