@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "pseudo_l10n"
   spec.version = PseudoL10n::VERSION
   spec.authors = ["Chris Fung"]
-  spec.email = ["chris.fung@coupa.com"]
+  spec.email = ["aergonaut@gmail.com"]
 
   spec.summary = "Simple utility for pseudo-localization in Ruby"
   spec.homepage = "https://github.com/aergonaut/pseudo_l10n"
@@ -16,17 +16,21 @@ Gem::Specification.new do |spec|
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "https://github.com/aergonaut/pseudo_l10n.git"
+    spec.metadata[
+      "source_code_uri"
+    ] = "https://github.com/aergonaut/pseudo_l10n.git"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+            "public gem pushes."
   end
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(File.expand_path("..", __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
+  spec.files =
+    Dir.chdir(File.expand_path("..", __FILE__)) do
+      `git ls-files -z`.split("\x0")
+        .reject { |f| f.match(%r{^(test|spec|features)/}) }
+    end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
