@@ -16,6 +16,14 @@ module PseudoL10n
   def self.source_locale
     @source_locale || :en
   end
+
+  def self.ignored_keys
+    @ignored_keys ||= Set.new
+  end
+
+  def self.ignored_keys=(keys)
+    @ignored_keys = keys.to_set
+  end
 end
 
 require "pseudo_l10n/transformer"

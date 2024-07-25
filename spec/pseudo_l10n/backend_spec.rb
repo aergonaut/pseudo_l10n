@@ -17,16 +17,40 @@ module PseudoL10n
           end
         end
       end
+
+      context "ignored keys" do
+        before do
+          allow(PseudoL10n).to receive(:ignored_keys).and_return(ignored_keys)
+        end
+
+        context "ignored_keys patterns" do
+          let(:ignored_keys) { [:ignored_hello, "ignored_hash", "*raw*"] }
+
+          it "does not translate ignored keys" do
+            I18n.with_locale(PseudoL10n.pseudo_locale) do
+              expect(I18n.t("ignored_hello")).to eq("This message is ignored.")
+              expect(I18n.t("ignored_hash")).to eq({ foo: "bar" })
+              expect(I18n.t("raw_hello")).to eq("Raw hello")
+            end
+          end
+        end
+      end
     end
 
     describe "#translations" do
+      let(:ignored_keys) { [:ignored_hello, "ignored_hash", "*raw*"] }
+
+      before do
+        allow(PseudoL10n).to receive(:ignored_keys).and_return(ignored_keys)
+      end
+
       it "includes the pseudolocale in the translations hash" do
         expect(I18n.backend.send(:translations)).to have_key(
           PseudoL10n.pseudo_locale
         )
       end
 
-      it "pseudolocalizes all the messages" do
+      it "pseudolocalizes all the messages while respecting ignores" do
         expect(
           I18n.backend.send(:translations)[PseudoL10n.pseudo_locale]
         ).to eq(
@@ -34,7 +58,12 @@ module PseudoL10n
             hello_name: "√Ｈｅｌｌｏ %{name}√",
             hello_world: "√Ｈｅｌｌｏ ｗｏｒｌｄ√",
             hello_world_html:
-              "√Ｈｅｌｌｏ <a href=\"https://www.example.com\">ｗｏｒｌｄ</a>√"
+              "√Ｈｅｌｌｏ <a href=\"https://www.example.com\">ｗｏｒｌｄ</a>√",
+            ignored_hash: {
+              foo: "bar"
+            },
+            ignored_hello: "This message is ignored.",
+            raw_hello: "Raw hello"
           }
         )
       end

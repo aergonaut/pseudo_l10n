@@ -20,9 +20,11 @@ module PseudoL10n
 
     def translate(locale, key, options)
       if locale.to_sym == PseudoL10n.pseudo_locale
-        locale = PseudoL10n.source_locale
-        original = original_backend.translate(locale, key, options)
-        ::PseudoL10n::Transformer.call(original)
+        source_locale = PseudoL10n.source_locale
+        original = original_backend.translate(source_locale, key, options)
+        normalized_key =
+          I18n.normalize_keys(nil, key, options[:scope], options[:separator])
+        ::PseudoL10n::Transformer.call(original, key: normalized_key)
       else
         original_backend.translate(locale, key, options)
       end

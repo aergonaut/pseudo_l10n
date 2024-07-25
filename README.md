@@ -47,6 +47,20 @@ the `source_locale` code with `-ZZ` appended. For example, the pseudo-locale cod
 PseudoL10n.pseudo_locale = :qps
 ```
 
+### Ignored Keys
+
+If there are some keys that you do not want translated, you may add them to the `PseudoL10n.ignored_keys` array:
+
+```ruby
+PseudoL10n.ignored_keys = ["ignored"]
+```
+
+`ignored_keys` accepts Symbols, Strings, or Regexps as elements. Strings may use glob syntax to match patterns. For example, the following would ignore all keys that start with `ignored`:
+
+```ruby
+PseudoL10n.ignored_keys = ["ignored*"]
+```
+
 ### Low-level Transformer API
 
 This gem also provides a low-level transformer API. This can be used to transform a string according to pseudolocale rules.

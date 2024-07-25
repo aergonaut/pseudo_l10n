@@ -2,3 +2,7 @@ en:
   hello_name: Hello %{name}
   hello_world: Hello world
   hello_world_html: Hello <a href="https://www.example.com">world</a>
+  ignored_hash:
+    foo: bar
+  ignored_hello: This message is ignored.
+  raw_hello: Raw hello

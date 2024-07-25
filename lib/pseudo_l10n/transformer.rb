@@ -14,9 +14,14 @@ module PseudoL10n
         })"
       )
 
-    def call(original)
+    def call(original, key: [])
+      return original if ignore_key?(key)
       if original.is_a?(Hash)
-        original.transform_values { |value| call(value) }
+        original
+          .map do |next_key, value|
+            [next_key, call(value, key: key + [next_key])]
+          end
+          .to_h
       elsif original.is_a?(Array)
         original.map { |value| call(value) }
       elsif original.is_a?(String)
@@ -45,6 +50,18 @@ module PseudoL10n
 
     def half_to_full_width(string)
       string.tr("0-9a-zA-Z", "０-９ａ-ｚＡ-Ｚ")
+    end
+
+    def ignore_key?(key_parts)
+      key = key_parts.join(".")
+      PseudoL10n.ignored_keys.any? do |pattern|
+        case pattern
+        when String, Symbol
+          File.fnmatch(pattern.to_s, key)
+        when Regexp
+          key =~ pattern
+        end
+      end
     end
   end
 end
