@@ -19,9 +19,7 @@ module PseudoL10n
       end
 
       context "ignored keys" do
-        before do
-          allow(PseudoL10n).to receive(:ignored_keys).and_return(ignored_keys)
-        end
+        before { PseudoL10n.config.ignored_keys = ignored_keys }
 
         context "ignored_keys patterns" do
           let(:ignored_keys) { [:ignored_hello, "ignored_hash", "*raw*"] }
@@ -40,9 +38,7 @@ module PseudoL10n
     describe "#translations" do
       let(:ignored_keys) { [:ignored_hello, "ignored_hash", "*raw*"] }
 
-      before do
-        allow(PseudoL10n).to receive(:ignored_keys).and_return(ignored_keys)
-      end
+      before { PseudoL10n.config.ignored_keys = ignored_keys }
 
       it "includes the pseudolocale in the translations hash" do
         expect(I18n.backend.send(:translations)).to have_key(

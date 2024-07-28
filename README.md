@@ -33,32 +33,32 @@ I18n.backend = PseudoL10n::Backend.new(I18n.backend)
 ### Pseudo-Locale
 
 This gem generates a pseudo-locale at runtime by applying varius transformations to strings from the source locale. By
-default the source locale is `:en`. You may change the source locale by setting `PseudoL10n.source_locale` to a
+default the source locale is `:en`. You may change the source locale by setting `PseudoL10n.config.source_locale` to a
 different value:
 
 ```ruby
-PseudoL10n.source_locale = :de
+PseudoL10n.config.source_locale = :de
 ```
 
 To activate pseudolocalization, set the current `I18n.locale` to the special pseudolocale code. By default, this code is
-the `source_locale` code with `-ZZ` appended. For example, the pseudo-locale code for `:de` would be `de-ZZ`. You may change the pseudo-locale code by setting `PseudoL10n.pseudo_locale` to a different value:
+the `source_locale` code with `-ZZ` appended. For example, the pseudo-locale code for `:de` would be `de-ZZ`. You may change the pseudo-locale code by setting `PseudoL10n.config.pseudo_locale` to a different value:
 
 ```ruby
-PseudoL10n.pseudo_locale = :qps
+PseudoL10n.config.pseudo_locale = :qps
 ```
 
 ### Ignored Keys
 
-If there are some keys that you do not want translated, you may add them to the `PseudoL10n.ignored_keys` array:
+If there are some keys that you do not want translated, you may add them to the `PseudoL10n.config.ignored_keys` array:
 
 ```ruby
-PseudoL10n.ignored_keys = ["ignored"]
+PseudoL10n.config.ignored_keys = ["ignored"]
 ```
 
 `ignored_keys` accepts Symbols, Strings, or Regexps as elements. Strings may use glob syntax to match patterns. For example, the following would ignore all keys that start with `ignored`:
 
 ```ruby
-PseudoL10n.ignored_keys = ["ignored*"]
+PseudoL10n.config.ignored_keys = ["ignored*"]
 ```
 
 ### Low-level Transformer API
@@ -80,7 +80,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pseudo_l10n. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/aergonaut/pseudo_l10n. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -88,4 +88,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the PseudoL10n project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/pseudo_l10n/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the PseudoL10n project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/aergonaut/pseudo_l10n/blob/master/CODE_OF_CONDUCT.md).

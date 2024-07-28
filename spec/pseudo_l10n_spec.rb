@@ -3,10 +3,10 @@ RSpec.describe PseudoL10n do
     expect(PseudoL10n::VERSION).not_to be nil
   end
 
-  after do
-    PseudoL10n.source_locale = nil
-    PseudoL10n.pseudo_locale = nil
-  end
+  # after do
+  #   PseudoL10n.config.source_locale = nil
+  #   PseudoL10n.config.pseudo_locale = nil
+  # end
 
   describe ".source_locale" do
     it "defaults to en" do
@@ -14,7 +14,7 @@ RSpec.describe PseudoL10n do
     end
 
     it "allows overriding" do
-      PseudoL10n.source_locale = :de
+      PseudoL10n.config.source_locale = :de
       expect(PseudoL10n.source_locale).to eq :de
     end
   end
@@ -25,12 +25,12 @@ RSpec.describe PseudoL10n do
     end
 
     it "appends -ZZ to the source locale when not set" do
-      PseudoL10n.source_locale = :de
+      PseudoL10n.config.source_locale = :de
       expect(PseudoL10n.pseudo_locale).to eq :"de-ZZ"
     end
 
     it "allows overriding" do
-      PseudoL10n.pseudo_locale = :qps
+      PseudoL10n.config.pseudo_locale = :qps
       expect(PseudoL10n.pseudo_locale).to eq :qps
     end
   end

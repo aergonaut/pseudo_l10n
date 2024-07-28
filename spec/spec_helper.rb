@@ -1,6 +1,9 @@
 require "bundler/setup"
 require "i18n"
 require "pseudo_l10n"
+require "pseudo_l10n/testing"
+
+PseudoL10n.enable_test_interface
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,6 +15,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before(:each) { PseudoL10n.reset_config }
 end
 
 # PseudoL10n.pseudo_locale = :"en-ZZ"

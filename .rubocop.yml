@@ -20,6 +20,7 @@ inherit_gem:
   # Standard plugins must be loaded separately (since v1.28.0)
   standard-performance: config/base.yml
   standard-custom: config/base.yml
+  syntax_tree: config/rubocop.yml
 
 # Sometimes we enable metrics cops
 # (which are disabled in Standard by default)
@@ -30,6 +31,9 @@ inherit_gem:
 # Global options, like Ruby version
 AllCops:
   SuggestExtensions: false
+
+Layout/ArgumentAlignment:
+  Enabled: false
 
 Style/ArgumentsForwarding:
   Enabled: false

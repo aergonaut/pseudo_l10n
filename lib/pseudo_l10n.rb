@@ -1,28 +1,23 @@
+require "dry/configurable"
 require "pseudo_l10n/version"
 
 module PseudoL10n
-  def self.pseudo_locale=(locale)
-    @pseudo_locale = locale&.to_sym
-  end
+  extend Dry::Configurable
+
+  setting :pseudo_locale, constructor: ->(val) { val&.to_sym }
+
+  setting :source_locale,
+          default: :en,
+          reader: true,
+          constructor: ->(val) { val&.to_sym }
+
+  setting :ignored_keys,
+          default: Set.new,
+          reader: true,
+          constructor: ->(val) { val&.to_set }
 
   def self.pseudo_locale
-    @pseudo_locale || :"#{source_locale}-ZZ"
-  end
-
-  def self.source_locale=(locale)
-    @source_locale = locale&.to_sym
-  end
-
-  def self.source_locale
-    @source_locale || :en
-  end
-
-  def self.ignored_keys
-    @ignored_keys ||= Set.new
-  end
-
-  def self.ignored_keys=(keys)
-    @ignored_keys = keys.to_set
+    config.pseudo_locale || :"#{config.source_locale}-ZZ"
   end
 end
 
